@@ -8,9 +8,9 @@ double CalculateFactorial(double number)
     }
     return factorial;
 }
-double result = 0.0;
+double res = 0.0;
 double number1, number2;
-int choice;
+int chop;
 do
 {
     // Выводим меню операций
@@ -18,32 +18,36 @@ do
     Console.WriteLine("4) Деление"); Console.WriteLine("5) Возвести в степень"); Console.WriteLine("6) Найти квадратный корень из числа"); Console.WriteLine("7) Найти 1% от числа");
     Console.WriteLine("8) Найти факториал"); Console.WriteLine("9) Exit");
     Console.Write("Введите номер операции который вы выбрали: "); // Запрашиваем выбор операции от пользователя
-    choice = int.Parse(Console.ReadLine());
-    switch (choice)
+    if (!int.TryParse(Console.ReadLine(), out chop))
+    {
+        Console.WriteLine("Ошибка: Неправильно выбрана операция. Пожалуйста, введите номер операции (число).");
+        continue;
+    }
+    switch (chop)
     {
         case 1:
             Console.Write("Введите первое число: "); // Запрашиваем числа и выполняем операцию сложения
             number1 = double.Parse(Console.ReadLine());
             Console.Write("Введите второе число: ");
             number2 = double.Parse(Console.ReadLine());
-            result = number1 + number2;
-            Console.WriteLine($"Окончательный результат: {result}");
+            res = number1 + number2;
+            Console.WriteLine($"Окончательный результат: {res}");
             break;
         case 2:
             Console.Write("Введите первое число: "); // Запрашиваем числа и выполняем операцию вычитания
             number1 = double.Parse(Console.ReadLine());
             Console.Write("Введите второе число: ");
             number2 = double.Parse(Console.ReadLine());
-            result = number1 - number2;
-            Console.WriteLine($"Окончательный результат: {result}");
+            res = number1 - number2;
+            Console.WriteLine($"Окончательный результат: {res}");
             break;
         case 3:
             Console.Write("Введите первое число: "); // Запрашиваем числа и выполняем операцию умножения
             number1 = double.Parse(Console.ReadLine());
             Console.Write("Введите второе число: ");
             number2 = double.Parse(Console.ReadLine());
-            result = number1 * number2;
-            Console.WriteLine($"Окончательный результат: {result}");
+            res = number1 * number2;
+            Console.WriteLine($"Окончательный результат: {res}");
             break;
         case 4:
             Console.Write("Введите первое число: "); // Запрашиваем числа и выполняем операцию деления, обрабатывая деление на ноль
@@ -52,8 +56,8 @@ do
             number2 = double.Parse(Console.ReadLine());
             if (number2 != 0)
             {
-                result = number1 / number2;
-                Console.WriteLine($"Окончательный результат: {result}");
+                res = number1 / number2;
+                Console.WriteLine($"Окончательный результат: {res}");
             }
             else
             {
@@ -65,26 +69,26 @@ do
             number1 = double.Parse(Console.ReadLine());
             Console.Write("Введите степень: ");
             int power = int.Parse(Console.ReadLine());
-            result = Math.Pow(number1, power);
-            Console.WriteLine($"Окончательный результат: {result}");
+            res = Math.Pow(number1, power);
+            Console.WriteLine($"Окончательный результат: {res}");
             break;
         case 6:
             Console.Write("Введите число: "); // Запрашиваем число и выполняем операцию нахождения квадратного корня
             number1 = double.Parse(Console.ReadLine());
-            result = Math.Sqrt(number1);
-            Console.WriteLine($"Окончательный результат: {result}");
+            res = Math.Sqrt(number1);
+            Console.WriteLine($"Окончательный результат: {res}");
             break;
         case 7:
             Console.Write("Введите число: "); // Запрашиваем число и выполняем операцию нахождения 1 процента
             number1 = double.Parse(Console.ReadLine());
-            result = 0.01 * number1;
-            Console.WriteLine($"1% числа: {result}");
+            res = 0.01 * number1;
+            Console.WriteLine($"1% числа: {res}");
             break;
         case 8:
             Console.Write("Введите число: "); // Запрашиваем число и выполняем операцию нахождения факториала
             number1 = double.Parse(Console.ReadLine());
-            result = CalculateFactorial(number1);
-            Console.WriteLine($"Факториал числа: {result}");
+            res = CalculateFactorial(number1);
+            Console.WriteLine($"Факториал числа: {res}");
             break;
         case 9:
             Console.WriteLine("Калькулятор устал работать. Спасибо что завершили его работу.");
@@ -93,4 +97,4 @@ do
             Console.WriteLine("Неправильно. Попробуйте еще раз.");
             break;
     }
-} while (choice != 9);
+} while (chop != 9);
